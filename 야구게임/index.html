@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function randomComputerNumbers() {
+        let numbers = [];
+
+        while (numbers.length < 3) {
+          let randomNum = Math.floor(Math.random() * 10);
+
+          if (!numbers.includes(randomNum)) {
+            numbers.push(randomNum);
+          }
+        }
+
+        return numbers;
+      }
+
+      function numBaseball(computerNum, userNum) {
+        let strikes = 0;
+        let balls = 0;
+
+        for (let i = 0; i < 3; i++) {
+          if (userNum[i] === computerNum[i]) {
+            strikes++;
+          } else if (computerNum.includes(userNum[i])) {
+            balls++;
+          }
+        }
+
+        return [strikes, balls];
+      }
+
+      function playGame() {
+        let computerNum = randomComputerNumbers();
+        let attempts = 0;
+
+        while (true) {
+          // 사용자가 올바른 형식의 숫자 3개를 입력할 때까지 반복하여 입력
+          let userNum = prompt(
+            "숫자 3개를 입력하세요 (0부터 9까지 중복 없이):"
+          );
+          if (userNum.length !== 3 || !/^\d+$/.test(userNum)) {
+            alert("유효한 숫자를 입력해주세요.");
+            continue;
+          }
+
+          let userNumArr = userNum.split("").map(Number);
+          let [strikes, balls] = numBaseball(computerNum, userNumArr);
+
+          attempts++;
+          alert(`시도 횟수: ${attempts}\n스트라이크: ${strikes}\n볼: ${balls}`);
+
+          if (strikes === 3) {
+            alert(
+              `축하합니다! 숫자를 모두 맞혔습니다.\n총 시도 횟수: ${attempts}`
+            );
+            break;
+          }
+        }
+      }
+
+      playGame();
+    </script>
+  </head>
+  <body></body>
+</html>
