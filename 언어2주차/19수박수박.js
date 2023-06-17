@@ -24,7 +24,7 @@ function solution(n) {
     return answer;
 }
 
-// 노가다식 문제풀이
+// 노가다식 문제풀이ㅋㅋㅋㅋ
 function waterMelon(n){
     var result = "수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박"
     //함수를 완성하세요
