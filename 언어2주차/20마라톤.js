@@ -27,16 +27,20 @@ function solution(p, c) {
     }
 }
 
-
-
+// En
+function solutionEn2(participant, completion) {
+  participant.sort();
+  completion.sort();
+  return participant.find((ei, i) => ei !== completion[i])  
+}
 
 // En
-function solutionEn(participant, completion) {
+function solutionEn1(participant, completion) {
   completion.forEach(item => {
     let find = participant.indexOf(item)
     participant.splice(find,1)  // 원본배열에서 직접 삭제 splice(매개변수1, 매개변수2, 매개변수3....) // 매개변수1 삭제할 위치 // 매개변수2 삭제할 개수 // 매개변수3.... "ao", "ao", "ao"
   })
- return participant
+ return participant[0]
 }
 
 console.log(solutionEn(["mislav", "stanko", "mislav", "ana"], ["stanko", "ana", "mislav"]))
@@ -59,3 +63,60 @@ function solution(participant, completion) {
 }
 
 
+//다른 답안
+function solution(participant, completion) {
+    let answer = '';
+    const hash = new Map();
+  
+    participant.forEach((name) => hash.set(name, (hash.get(name) || 0) + 1));
+    completion.forEach((name) => hash.set(name, hash.get(name) - 1));
+  
+    for (const [key, value] of hash) {
+      if (value > 0) {
+        answer = key;
+      }
+    }
+  
+    return answer;
+  }
+
+  //
+
+
+  function solutionHash(participant, completion) {
+    const hash = {};
+  
+    // 해시 생성
+    for (let i = 0; i < completion.length; i++) {
+      if (hash[completion[i]]) {
+        hash[completion[i]] += 1;
+      } else {
+        hash[completion[i]] = 1;
+      }
+    }
+  
+    // 해시에서 참가자 제거
+    for (let i = 0; i < participant.length; i++) {
+      if (hash[participant[i]]) {
+        hash[participant[i]] -= 1;
+        if (hash[participant[i]] === 0) {
+          delete hash[participant[i]];
+        }
+      } else {
+        return participant[i]; // 누락된 참가자 반환
+      }
+    }
+  }
+
+
+  // 해시 테이블 
+  function solution(participant, completion) {
+    const hash = {};
+    completion.forEach(name => hash[name] ? hash[name] +=1 : hash[name]=1)
+    return participant.map(name => hash[name] 
+      ? (hash[name] -= 1, hash[name] === 0 && delete hash[name], undefined)
+      : name).filter(Boolean).join("");  
+  }
+
+  //중복값을 없앨 경우에 주로 사용
+  //동명이인이 있을수도 있다.
