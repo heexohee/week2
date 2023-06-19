@@ -1,5 +1,5 @@
 
-//me
+//국환
 function solution(n){
     return '수박'.repeat(n).slice(0,n)
 }
@@ -24,7 +24,7 @@ function solution(n) {
     return answer;
 }
 
-// 노가다식 문제풀이ㅋㅋㅋㅋ
+// 다른 사람의 노가다식 문제풀이ㅋㅋㅋㅋ
 function waterMelon(n){
     var result = "수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박수박"
     //함수를 완성하세요
@@ -76,3 +76,8 @@ function solution(n) {
 const str = "Hello, World!";
 // console.log(str.substring(7, 5)); // 5번지 7번지
 // console.log(str.slice(7, 5));  // 못찾아요. 시작이 끝보다 커서 
+
+// 남규 
+function solution(n) {
+  return n%2? '수박'.repeat(Math.floor(n/2)) +'수':'수박'.repeat(n/2)
+}

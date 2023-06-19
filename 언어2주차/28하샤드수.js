@@ -14,6 +14,8 @@ function solution(x) {
 // 하샤드가 아니면 0보다 큰 수가 나오겠죠 
 // 블리언 판별에서 0은 false 이기에, ! 를 통해서 값을 변경하여, 0 === false 이면, true 가 반환되면 되쥬... 
 
+
+
 function solution(x) {
 	return x % [...String(x)].reduce((i, j) => i+(+j), 0) === 0 ? true : false;
 }
@@ -41,3 +43,11 @@ function isHarshadNumber(x) {
 // ["1", "0"]
 // Array.from(String(x), Number) // 형반환을 시켜주네요?  // [1, 0]
 
+// namgyu
+function solution(x, sum = 0) {
+  while(x>=10){
+  sum += x%10
+  x = Math.floor(x/10)
+  }
+  return !(x%(sum + x))
+}

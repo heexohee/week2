@@ -55,6 +55,12 @@ function solution(arr) {
     : (arr.splice(arr.indexOf(Math.min(...arr)), 1), arr) // 최소값의 인덱스 // (과정(1), 과정(2), return 최종적인 오른쪽 과정(3))
 }
 
+// 남규
+function solution(arr) {
+  arr.splice(arr.indexOf(Math.min(...arr)),1)
+  return (arr.length < 1) ? [-1] : arr
+}
+
 // 배열 메소드 splice (시작점, 제거할요소수, 추가할내용1, 추가할내용2,.............)
 function prac(arr) {
   let arrNum = [0,1,2,3,4]

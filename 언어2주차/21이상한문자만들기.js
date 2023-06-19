@@ -81,6 +81,12 @@ function solution3 (s) {
             .join(" ") //["","TrY","","HeLlO",""].join("") // " Try  HeLlo "
 }
 
+function solution3 (s) {
+  return s.split(' ') 
+          .map(string => [...string].map((alpa, index) => index%2===0 ? alpa.toUpperCase() : alpa.toLowerCase()).join("")) 
+          .join(" ") 
+}
+
 
 
 // split(" ") //  " try  hello "  // "try  hello" //  ["","try","","hello",""]
@@ -99,6 +105,20 @@ function solution4(s) {
 		words[i] = word.join("");
 	}
 	return words.join(" ");
+}
+
+// 남규
+function solution(s) {
+  let words = s.split(' ')
+  let newWord = []
+  words.forEach(word =>{ 
+                for(i=0 ; i< word.length ; i++){
+          newWord.push(i%2? word[i].toLowerCase():word[i].toUpperCase())
+                }
+      newWord.push(' ')
+  })
+  newWord.pop()
+  return newWord.join("")
 }
 
 // console.log("통과 코드", JSON.stringify(solution2(" try  hello ")))

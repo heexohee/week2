@@ -18,3 +18,5 @@ function solution5 (data) {
 }
 
 solution("5 3")
+
+// 남규
