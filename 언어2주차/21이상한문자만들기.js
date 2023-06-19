@@ -10,22 +10,29 @@
 // item[]
 // item.charAt()
 
-//sh의 미완풀이^^
+//sh의 미완풀이^^ ////////////////////////////////////////////////////////
 function solution1(s) {
-    let answer = '';
-    let dd = s.split(' ')
+    let arr = []  // (1) 추가
+    let dd = s.split(' ');
 
     for (let i = 0; i<dd.length; i++){
+      let answer = ''; // (2) 위치변경
         for (let j =0; j<dd[i].length; j++){
             if (j%2===0){
-                answer+=dd
+                answer+=dd[i][j].toUpperCase();
+            }
+            else {
+              answer+=dd[i][j].toLowerCase();
             }
         }
-
+        arr.push(answer) // (1) 에 추가
     }
-    return answer;
+    return arr.join(" "); // (3) .join(" ")
 }
 
+console.log(solution1(" try  hello "))
+
+//////////////////////////////////////////////////////////////////////
 
 // 다른사람 풀이  // 코드실행은 "실패" // 제출 후 채점하기는 "통과" // 구글링 
 function solution2(s) {
@@ -47,13 +54,31 @@ function solution2(s) {
 return answer.join(' ');
 }
 
-
+function solution(s) {
+  let answer = []; // 최종배열
+  let arr = s.toLowerCase().split(' '); // 공백기준으로 자르고
+  
+  // 이중 For문
+  for(temp of arr) {
+    let word = "";
+    for(let j = 0; j < temp.length; j++) {
+      (j % 2 === 0)
+      ? word += temp[j].toUpperCase()
+      : word += temp[j];
+    }
+  answer.push(word);
+  }
+  return answer.join(' ');
+}
 
 // 냐 풀이 
 function solution3 (s) {
-    return s.split(' ')
-            .map(string => [...string].map((alpa, index) => index%2===0 ? alpa.toUpperCase() : alpa.toLowerCase()).join(""))
-            .join(" ")
+    return s.split(' ') // ["","try","","hello",""]
+            .map(string => [...string].map((alpa, index) => index%2===0 // ["t","r", "y"] // 하나씩 작업하겠죠, index 짝수(대문자)면, 홀수(소문자)면 
+                                          ? alpa.toUpperCase() 
+                                          : alpa.toLowerCase())
+                                      .join("")) // ["T","r", "Y"].join("") // "TrY" 반환되어 // 72번의 1번지 값으로 들어가는거죠 
+            .join(" ") //["","TrY","","HeLlO",""].join("") // " Try  HeLlo "
 }
 
 
@@ -62,28 +87,24 @@ function solution3 (s) {
 
 function solution4(s) {
 	let words = s.split(" ");
-	// console.log(words); 
-	let newS = [];
-	for (i = 0; i < words.length; i++) {
-		// 0, 1, 2 가 출력된 이유 : for in 문은 배열의 인덱스를 나타냄, for of 문을 사용해야 각 배열의 요소를 나타냄!
-		for (j = 0; j < words[i].length; j++) {
+	for (let i = 0; i < words.length; i++) {
+		let word = words[i].split("");
+		for (let j = 0; j < word.length; j++) {
 			if (j % 2 === 0) {
-				newS.push(words[i][j].toUpperCase());
+				word[j] = word[j].toUpperCase();
 			} else {
-				newS.push(words[i][j].toLowerCase());
+				word[j] = word[j].toLowerCase();
 			}
 		}
-		newS.push(" ");
-    // console.log(newS)  // [ ' ', 'T', 'r', 'Y', ' ' ]
+		words[i] = word.join("");
 	}
-  newS.pop();
-	return newS.join("");
+	return words.join(" ");
 }
 
-console.log("통과 코드", JSON.stringify(solution2(" try  hello ")))
-console.log("영찬 코드", JSON.stringify(solution3(" try  hello ")))
-console.log("다솔 코드", JSON.stringify(solution4(" try  hello ")))
-console.log("====================================================")
-console.log("통과 코드", JSON.stringify(solution2(" asdf kjlwe asdif   dsafqew asfa ")))
-console.log("영찬 코드", JSON.stringify(solution3(" asdf kjlwe asdif   dsafqew asfa ")))
-console.log("다솔 코드", JSON.stringify(solution4(" asdf kjlwe asdif   dsafqew asfa ")))
+// console.log("통과 코드", JSON.stringify(solution2(" try  hello ")))
+// console.log("영찬 코드", JSON.stringify(solution3(" try  hello ")))
+// console.log("다솔 코드", JSON.stringify(solution4(" try  hello ")))
+// console.log("====================================================")
+// console.log("통과 코드", JSON.stringify(solution2(" asdf kjlwe asdif   dsafqew asfa ")))
+// console.log("영찬 코드", JSON.stringify(solution3(" asdf kjlwe asdif   dsafqew asfa ")))
+// console.log("다솔 코드", JSON.stringify(solution4(" asdf kjlwe asdif   dsafqew asfa ")))
