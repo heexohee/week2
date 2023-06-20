@@ -1,6 +1,6 @@
 // 명함지갑을 지갑의 크기를
 // 최소한 작게 
-// [[60, 50], [30, 70], [60, 30], [80, 40]]
+// [[60, 50], [30, 70], [60, 30], [80, 40]] 
 // w, h 
 
 // 60 50
@@ -32,3 +32,22 @@ function solution(sizes) {
 // ]
 //                [0]번지들 60,70,60,80 => 80
 //                [1]번지들 50,30,30,40 => 50 X 4000 
+
+//hj
+
+function solution(sizes) {
+  const w = [];
+  const h = [];
+
+  for(let i = 0; i < sizes.length; i++) {
+    w.push(Math.min(...sizes[i]))
+    h.push(Math.max(...sizes[i]))
+  }
+      // const max = Math.max(sizes[i][0], sizes[i][1]);
+      // const min = Math.min(sizes[i][0], sizes[i][1]);
+      
+  return Math.max(...w) * Math.max(...h);
+}
+
+// 쉼표 연산자 
+//소괄호 안에서 순서대로 연산하는 것
